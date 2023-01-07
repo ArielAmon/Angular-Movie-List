@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
-import {MatButtonModule,} from '@angular/material/button';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatCardModule} from '@angular/material/card';
-import {MatTableModule} from '@angular/material/table';
-import {MatInputModule} from '@angular/material/input';
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const MaterialComponnets = [
   MatButtonModule,
   MatToolbarModule,
-  MatCardModule,
+  MatFormFieldModule,
   MatTableModule,
-  MatInputModule
+  MatInputModule,
+  MatDialogModule,
 ];
-
 
 @NgModule({
   imports: [MaterialComponnets],
-  exports:[MaterialComponnets]
+  exports: [MaterialComponnets],
 })
-export class MaterialModule { }
+export class MaterialModule {}

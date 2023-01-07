@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MainBlockComponent } from './main-block.component';
+import { AddMovieDialogComponent } from './add-movie-dialog.component';
 
-describe('MainBlockComponent', () => {
-  let component: MainBlockComponent;
-  let fixture: ComponentFixture<MainBlockComponent>;
+describe('AddMovieDialogComponent', () => {
+  let component: AddMovieDialogComponent;
+  let fixture: ComponentFixture<AddMovieDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MainBlockComponent ]
+      declarations: [ AddMovieDialogComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MainBlockComponent);
+    fixture = TestBed.createComponent(AddMovieDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

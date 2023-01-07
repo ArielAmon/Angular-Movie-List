@@ -1,15 +1,8 @@
-
-<mat-card class="example-card">
-  <mat-card-header>
-
-<app-form-fields></app-form-fields>
-
-  </mat-card-header>
-  <mat-card-content>
-    <app-result-table></app-result-table>
-  </mat-card-content>
-  <mat-card-footer></mat-card-footer>
-</mat-card>
-
-
-
+<div class="container">
+  <div class="row">
+    <app-form-fields></app-form-fields>
+  </div>
+  <div class="row">
+    <app-result-table [test]="test1"></app-result-table>
+  </div>
+</div>

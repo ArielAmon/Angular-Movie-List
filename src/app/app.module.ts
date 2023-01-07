@@ -7,6 +7,7 @@ import { MaterialModule } from './material/material.module';
 import { MainBlockComponent } from './components/main-block/main-block.component';
 import { ResultTableComponent } from './components/result-table/result-table.component';
 import { FormFieldsComponent } from './components/form-fields/form-fields.component';
+import { AddMovieDialogComponent } from './components/add-movie-dialog/add-movie-dialog.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { FormFieldsComponent } from './components/form-fields/form-fields.compon
     AppComponent,
     MainBlockComponent,
     ResultTableComponent,
-    FormFieldsComponent
+    FormFieldsComponent,
+    AddMovieDialogComponent
   ],
   imports: [
     BrowserModule,
