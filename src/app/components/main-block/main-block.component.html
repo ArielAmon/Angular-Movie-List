@@ -1,8 +1,10 @@
 <div class="container">
   <div class="row">
-    <app-form-fields></app-form-fields>
+    <app-form-fields (deleteMovie)="getMovieName($event)"
+    (newMovie)="getNewMovieData($event)"
+    ></app-form-fields>
   </div>
   <div class="row">
-    <app-result-table [test]="test1"></app-result-table>
+    <app-result-table [movieList]="dataSource" *ngIf="newMovie!=={}" [newData]="newMovie" ></app-result-table>
   </div>
 </div>

@@ -5,7 +5,7 @@
         <mat-form-field class="delete-input">
           <mat-label>Enter movie name:</mat-label>
           <input
-            type="search"
+            type="text"
             #txtInput
             (input)="deleteWord = txtInput.value"
             matInput
@@ -14,19 +14,14 @@
         </mat-form-field>
       </div>
       <div class="col-sm-12">
-        <button
-          class="btn"
-          mat-raised-button
-          color="primary"
-          (click)="openAddDialog()"
-        >
-          Add Movie
-        </button>
+        <button type="button" class="btn" mat-raised-button color="primary" (click)="openAddDialog()">Add Movie</button>
+
         <button
           [disabled]="deleteWord.length === 0"
           class="btn"
           mat-raised-button
           color="warn"
+          (click)="setWordToDelete()"
         >
           Delete
         </button>
