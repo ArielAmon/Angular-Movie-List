@@ -1,17 +1,15 @@
-import { Component, Input,  OnInit } from '@angular/core';
+import { Component, Input,  OnInit, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-result-table',
   templateUrl: './result-table.component.html',
   styleUrls: ['./result-table.component.scss'],
 })
-export class ResultTableComponent implements OnInit  {
+export class ResultTableComponent implements OnInit , OnChanges{
 
-  // implement on change to get data from main block about new data
 
   constructor(){ }
 
-  @Input() newData: Object = {};
   @Input() movieList: Object[] = [];
 
   displayedColumns: string[] = [
@@ -23,16 +21,14 @@ export class ResultTableComponent implements OnInit  {
   ];
 
 
-
 ngOnInit(): void {
   console.log(this.movieList);
-  console.log(this.newData);
 }
 
-addNewMovie(){
-  console.log(this.newData);
+ngOnChanges(changes: SimpleChanges): void {
+  console.log(changes)
+  
 }
-
 
 
 }

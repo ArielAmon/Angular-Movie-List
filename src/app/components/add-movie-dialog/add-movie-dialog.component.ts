@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { MatDialogRef } from "@angular/material/dialog";
 
 
 @Component({
@@ -27,16 +27,16 @@ export class AddMovieDialogComponent implements OnInit{
 
   ngOnInit(): void {
     this.movieForm = this.formBuilder.group({
-      movieName : ['', Validators.required],
-      movieGenere : ['', Validators.required],
-      movieYear : ['', Validators.required],
-      movieLength : ['', Validators.required],
-      movieRank : ['', Validators.required],
+      name : ['', Validators.required],
+      geners : ['', Validators.required],
+      year : ['', Validators.required],
+      length : ['', Validators.required],
+      rank : ['', Validators.required],
     })
   }
   addMovie(){
     console.log("IN HERE",this.movieForm.value);
-    this.dialogRef.close({ data: this.movieForm.value });
+    this.dialogRef.close(this.movieForm.value );
   }
 
 }
