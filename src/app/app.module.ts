@@ -9,6 +9,8 @@ import { ResultTableComponent } from './components/result-table/result-table.com
 import { FormFieldsComponent } from './components/form-fields/form-fields.component';
 import { AddMovieDialogComponent } from './components/add-movie-dialog/add-movie-dialog.component';
 import { PopUpComponent } from './components/pop-up/pop-up.component';
+import { ApiService } from './services/api.service';
+import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 
 
 @NgModule({
@@ -23,9 +25,10 @@ import { PopUpComponent } from './components/pop-up/pop-up.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

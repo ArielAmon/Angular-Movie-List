@@ -1,36 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Movie } from 'src/app/models/movie.model';
+import { ApiService } from 'src/app/services/api.service';
 import { PopUpComponent } from '../pop-up/pop-up.component';
 
-let ELEMENT_DATA = [
-  {
-    name: 'Avangers',
-    geners: 'Action',
-    year: 2020,
-    length: '1:40',
-    rank: 9.9,
-  },
-  {
-    name: 'Inception',
-    geners: 'Thriller',
-    year: 2018,
-    length: '1:20',
-    rank: 7.5,
-  },
-  {
-    name: 'Avatar',
-    geners: 'Sci-fi',
-    year: 2014,
-    length: '2:30',
-    rank: 7.9,
-  },
-  {
-    name: 'Killer',
-    geners: 'horror',
-    year: 2013,
-    length: '1:40',
-    rank: 8.9,
-  },
+let ELEMENT_DATA: Movie[]= [
+
 ];
 
 @Component({
@@ -40,9 +15,9 @@ let ELEMENT_DATA = [
 })
 export class MainBlockComponent implements OnInit{
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, public api: ApiService) {}
 
-  dataSource = ELEMENT_DATA;
+  dataSource:Movie[] = ELEMENT_DATA;
   message: string = '';
 
 

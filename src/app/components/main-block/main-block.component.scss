@@ -2,3 +2,11 @@
   margin: 5rem;
   padding: 5rem;
 }
+h1 {
+  font-size: 40px;
+  font-weight: 600;
+  background-image: linear-gradient(to left, #ececec, #2828b8);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
