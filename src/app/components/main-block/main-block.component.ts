@@ -27,14 +27,14 @@ export class MainBlockComponent implements OnInit {
     console.log('Got to main !', name);
     this.message = '';
     this.api.deleteMovie(name).subscribe((response: any) => {
-      console.log('respone of DB to delete', response);
+      console.log('respone of DB to delete : ', response);
 
       if (response === 'Movie has been deleted from your list') {
         this.dataSource.forEach((value, index) => {
           if (value.name == name) this.dataSource.splice(index, 1);
         });
         this.dataSource = [...this.dataSource];
-        console.log('after movie deleted !', this.dataSource);
+        console.log('local = after movie deleted !', this.dataSource);
 
         setTimeout(() => {
           this.api.getAllMovies().subscribe((response: any) => {
@@ -42,6 +42,7 @@ export class MainBlockComponent implements OnInit {
           });
         }, 2000);
       }
+      this.showPopupMessage(response);
     });
   }
 
@@ -49,15 +50,15 @@ export class MainBlockComponent implements OnInit {
     console.log('Got to main !', data);
     if (data) {
       this.api.addMovie(data).subscribe((response: any) => {
-        console.log('respone of DB to adding', response);
+        console.log('respone of DB to adding : ', response);
 
-        if (response === 'Movie added to db') {
+        if (response === 'Movie added to your List') {
           this.dataSource = [data, ...this.dataSource];
           this.sort();
-          console.log('after movie added !', this.dataSource);
+          console.log('local = after movie added !', this.dataSource);
           setTimeout(() => {
             this.api.getAllMovies().subscribe((response: any) => {
-              console.log('DB after delete :', response);
+              console.log('DB after add :', response);
             });
           }, 2000);
         }
