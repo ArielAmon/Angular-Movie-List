@@ -5,8 +5,11 @@
 h1 {
   font-size: 40px;
   font-weight: 600;
-  background-image: linear-gradient(to left, #ececec, #2828b8);
+  background-image: linear-gradient(to right, #553c9a 45%, #ee4b2b);
   color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
+}
+h2 {
+  margin-top: 50px;
 }

@@ -4,65 +4,78 @@ import { Movie } from 'src/app/models/movie.model';
 import { ApiService } from 'src/app/services/api.service';
 import { PopUpComponent } from '../pop-up/pop-up.component';
 
-let ELEMENT_DATA: Movie[]= [
-
-];
-
 @Component({
   selector: 'app-main-block',
   templateUrl: './main-block.component.html',
   styleUrls: ['./main-block.component.scss'],
 })
-export class MainBlockComponent implements OnInit{
-
+export class MainBlockComponent implements OnInit {
   constructor(public dialog: MatDialog, public api: ApiService) {}
 
-  dataSource:Movie[] = ELEMENT_DATA;
+  dataSource: Movie[] = [];
   message: string = '';
 
-
   ngOnInit(): void {
-    this.sort();
+    this.api.getAllMovies().subscribe((response: any) => {
+      console.log(response);
+      this.dataSource = response;
+      this.sort();
+    });
   }
 
-  getMovieName(name:any){
-    console.log("Got to main !",name);
-    if (this.dataSource.some(movie => movie.name === name)) {
-      this.message = '';
-      this.RemoveMovie(name);
+  getMovieName(name: any) {
+    console.log('Got to main !', name);
+    this.message = '';
+    this.api.deleteMovie(name).subscribe((response: any) => {
+      console.log('respone of DB to delete', response);
+
+      if (response === 'Movie has been deleted from your list') {
+        this.dataSource.forEach((value, index) => {
+          if (value.name == name) this.dataSource.splice(index, 1);
+        });
         this.dataSource = [...this.dataSource];
-    }
-    else{
-        this.openPopup();
-    }
+        console.log('after movie deleted !', this.dataSource);
 
+        setTimeout(() => {
+          this.api.getAllMovies().subscribe((response: any) => {
+            console.log('DB after delete :', response);
+          });
+        }, 2000);
+      }
+    });
   }
 
-  openPopup(){
-    this.message = "Sorry, Movie not found";
+  getNewMovieData(data: any) {
+    console.log('Got to main !', data);
+    if (data) {
+      this.api.addMovie(data).subscribe((response: any) => {
+        console.log('respone of DB to adding', response);
+
+        if (response === 'Movie added to db') {
+          this.dataSource = [data, ...this.dataSource];
+          this.sort();
+          console.log('after movie added !', this.dataSource);
+          setTimeout(() => {
+            this.api.getAllMovies().subscribe((response: any) => {
+              console.log('DB after delete :', response);
+            });
+          }, 2000);
+        }
+        this.showPopupMessage(response);
+      });
+    }
+  }
+
+  sort() {
+    this.dataSource = this.dataSource.sort((a, b) =>
+      a.rank > b.rank ? -1 : 1
+    );
+  }
+
+  showPopupMessage(response: any) {
+    this.message = response;
     const dialogRef = this.dialog.open(PopUpComponent, {
-      data: { errorMessage: this.message}
+      data: { errorMessage: this.message },
     });
   }
-
-  getNewMovieData(data:any){
-    console.log("Got to main !",data);
-    if(data){
-    this.dataSource = [data, ...this.dataSource];
-    this.sort();
-    console.log("after new pushed !",this.dataSource);
-    }
-  }
-
-  sort(){
-    this.dataSource = this.dataSource.sort((a, b) => (a.rank > b.rank) ? -1 : 1);
-  }
-
-   RemoveMovie(key: string) {
-    this.dataSource.forEach((value,index)=>{
-        if(value.name==key) this.dataSource.splice(index,1);
-    });
-}
-
-
 }

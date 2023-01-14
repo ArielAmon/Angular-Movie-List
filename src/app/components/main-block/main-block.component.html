@@ -1,16 +1,18 @@
 <div class="container">
   <h1 class="m-5">Movie List</h1>
 
-  <div class="row" *ngIf=" dataSource && dataSource.length > 0">
-
-    <app-form-fields (deleteMovie)="getMovieName($event)"
-    (newMovie)="getNewMovieData($event)"
+  <div class="row">
+    <app-form-fields
+      (deleteMovie)="getMovieName($event)"
+      (newMovie)="getNewMovieData($event)"
     ></app-form-fields>
 
-    <app-result-table [movieList]="dataSource" ></app-result-table>
+    <app-result-table
+      *ngIf="dataSource && dataSource.length > 0"
+      [movieList]="dataSource"
+    ></app-result-table>
   </div>
   <div class="row" *ngIf="!dataSource || dataSource.length === 0">
-    <h2 class="md-display-1" >Your movie list is empty !</h2>
+    <h2 class="md-display-1">Your movie list is empty !</h2>
   </div>
-
 </div>
